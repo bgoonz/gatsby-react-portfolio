@@ -6002,10 +6002,10 @@ gatsby-plugin-emotion@^4.5.0:
     "@babel/runtime" "^7.12.5"
     "@emotion/babel-preset-css-prop" "^10.0.27"
 
-gatsby-plugin-gatsby-cloud@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-gatsby-cloud/-/gatsby-plugin-gatsby-cloud-1.0.1.tgz#f5ded9ef8a7f481de10cca51643b24b4e9e109c9"
-  integrity sha512-sSRv2AhpsQhhRhlOjcFGG1JalJ5ZIX3/q0lDpv9zjeY/B+/AyCjqKjtnlq1idgafp4/IL8MLmKMMqdjICXKdXQ==
+gatsby-plugin-gatsby-cloud@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-gatsby-cloud/-/gatsby-plugin-gatsby-cloud-1.0.2.tgz#0225a8394f289f6d7263e8d9d96ea935e30f20c7"
+  integrity sha512-I/cVwA8i8fuvhOobSyOkSdi868Shr9sEx2Fj0tOZq5JOlWbQ7YoWAPSW8dAvXWfy4pc5Bnp8GhG0uv1Zct1xWw==
   dependencies:
     "@babel/runtime" "^7.12.5"
     fs-extra "^8.1.0"
