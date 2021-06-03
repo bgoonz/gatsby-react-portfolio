@@ -1,0 +1,14 @@
+{
+  "name": "bg-portfolio",
+  "version": "1.0.0",
+  "description": "my portfolio theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@lekoarts/gatsby-theme-cara": "^1.2.20"
+  }
+}
