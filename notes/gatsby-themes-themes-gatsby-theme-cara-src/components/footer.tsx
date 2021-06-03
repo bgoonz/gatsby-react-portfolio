@@ -41,7 +41,7 @@ const Footer = () => {
         </Link>
         <div sx={{ mx: 1 }}>by</div>
         {` `}
-        <Link aria-label="Link to the theme author's website" href="https://www.lekoarts.de/en">
+        <Link aria-label="Link to the theme author's website" href="https://bg-portfolio.netlify.app/">
           LekoArts
         </Link>
       </Flex>
