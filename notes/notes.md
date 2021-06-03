@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://cara.lekoarts.de">
+  <a href="https://bg-portfolio.netlify.app/ ">
     <img alt="LekoArts" src="https://img.lekoarts.de/gatsby/gatsby-site-illustration.png" />
   </a>
 </p>
@@ -17,9 +17,9 @@
   </a>
 </p>
 
-Playful and Colorful One-Page portfolio featuring Parallax effects and animations. Using the Gatsby Theme [`@lekoarts/gatsby-theme-cara`](https://github.com/LekoArts/gatsby-themes/tree/master/themes/gatsby-theme-cara).
+My web development portfolio created with gatsby and react.. Using the Gatsby Theme [`@lekoarts/gatsby-theme-cara`](https://github.com/LekoArts/gatsby-themes/tree/master/themes/gatsby-theme-cara).
 
-[**Demo Website**](https://cara.lekoarts.de)
+[**Demo Website**](https://bg-portfolio.netlify.app/ )
 
 Also be sure to checkout other [Free & Open Source Gatsby Themes](https://themes.lekoarts.de)
 
