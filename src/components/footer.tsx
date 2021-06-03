@@ -35,9 +35,7 @@ const Footer = () => {
         
     
         {` `}
-        <Link aria-label="Link to the theme author's website" href="https://bg-portfolio.netlify.app/">
-          LekoArts
-        </Link>
+   
       </Flex>
     </Box>
   )
