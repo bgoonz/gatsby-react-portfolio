@@ -2,4 +2,4 @@
 
 
 
-!preview](https://github.com/bgoonz/gatsby-react-portfolio/blob/master/static/portfolio.png?raw=true)
+![preview](https://github.com/bgoonz/gatsby-react-portfolio/blob/master/static/portfolio.png?raw=true)
