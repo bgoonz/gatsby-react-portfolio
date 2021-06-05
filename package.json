@@ -1,11 +1,11 @@
 {
   "private": true,
   "name": "cara",
-  "description": "Playful and Colorful One-Page portfolio featuring Parallax effects and animations",
+  "description": "my portfolio site",
   "version": "0.2.9",
-  "author": "LekoArts <hello@lekoarts.de>",
+  "author": "bgoonz <bryan.guner.dev@gmail.com>",
   "license": "0BSD",
-  "starter-name": "gatsby-starter-portfolio-cara",
+  "starter-name": "bgoonz portfolio",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
