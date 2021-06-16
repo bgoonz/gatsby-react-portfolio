@@ -1,9 +1,16 @@
 this.workbox = this.workbox || {};
-this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mjs, logger_mjs, Deferred_mjs, WorkboxError_mjs) {
-  'use strict';
+this.workbox.broadcastUpdate = (function (
+  exports,
+  assert_mjs,
+  getFriendlyURL_mjs,
+  logger_mjs,
+  Deferred_mjs,
+  WorkboxError_mjs
+) {
+  "use strict";
 
   try {
-    self['workbox:broadcast-update:4.3.1'] && _();
+    self["workbox:broadcast-update:4.3.1"] && _();
   } catch (e) {} // eslint-disable-line
 
   /*
@@ -28,29 +35,49 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
 
   const responsesAreSame = (firstResponse, secondResponse, headersToCheck) => {
     {
-      if (!(firstResponse instanceof Response && secondResponse instanceof Response)) {
-        throw new WorkboxError_mjs.WorkboxError('invalid-responses-are-same-args');
+      if (
+        !(
+          firstResponse instanceof Response &&
+          secondResponse instanceof Response
+        )
+      ) {
+        throw new WorkboxError_mjs.WorkboxError(
+          "invalid-responses-are-same-args"
+        );
       }
     }
 
-    const atLeastOneHeaderAvailable = headersToCheck.some(header => {
-      return firstResponse.headers.has(header) && secondResponse.headers.has(header);
+    const atLeastOneHeaderAvailable = headersToCheck.some((header) => {
+      return (
+        firstResponse.headers.has(header) && secondResponse.headers.has(header)
+      );
     });
 
     if (!atLeastOneHeaderAvailable) {
       {
-        logger_mjs.logger.warn(`Unable to determine where the response has been updated ` + `because none of the headers that would be checked are present.`);
-        logger_mjs.logger.debug(`Attempting to compare the following: `, firstResponse, secondResponse, headersToCheck);
+        logger_mjs.logger.warn(
+          `Unable to determine where the response has been updated ` +
+            `because none of the headers that would be checked are present.`
+        );
+        logger_mjs.logger.debug(
+          `Attempting to compare the following: `,
+          firstResponse,
+          secondResponse,
+          headersToCheck
+        );
       } // Just return true, indicating the that responses are the same, since we
       // can't determine otherwise.
-
 
       return true;
     }
 
-    return headersToCheck.every(header => {
-      const headerStateComparison = firstResponse.headers.has(header) === secondResponse.headers.has(header);
-      const headerValueComparison = firstResponse.headers.get(header) === secondResponse.headers.get(header);
+    return headersToCheck.every((header) => {
+      const headerStateComparison =
+        firstResponse.headers.has(header) ===
+        secondResponse.headers.has(header);
+      const headerValueComparison =
+        firstResponse.headers.get(header) ===
+        secondResponse.headers.get(header);
       return headerStateComparison && headerValueComparison;
     });
   };
@@ -62,11 +89,11 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
     license that can be found in the LICENSE file or at
     https://opensource.org/licenses/MIT.
   */
-  const CACHE_UPDATED_MESSAGE_TYPE = 'CACHE_UPDATED';
-  const CACHE_UPDATED_MESSAGE_META = 'workbox-broadcast-update';
-  const DEFAULT_BROADCAST_CHANNEL_NAME = 'workbox';
+  const CACHE_UPDATED_MESSAGE_TYPE = "CACHE_UPDATED";
+  const CACHE_UPDATED_MESSAGE_META = "workbox-broadcast-update";
+  const DEFAULT_BROADCAST_CHANNEL_NAME = "workbox";
   const DEFAULT_DEFER_NOTIFICATION_TIMEOUT = 10000;
-  const DEFAULT_HEADERS_TO_CHECK = ['content-length', 'etag', 'last-modified'];
+  const DEFAULT_HEADERS_TO_CHECK = ["content-length", "etag", "last-modified"];
 
   /*
     Copyright 2018 Google LLC
@@ -114,23 +141,19 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
    * @memberof workbox.broadcastUpdate
    */
 
-  const broadcastUpdate = async ({
-    channel,
-    cacheName,
-    url
-  }) => {
+  const broadcastUpdate = async ({ channel, cacheName, url }) => {
     {
-      assert_mjs.assert.isType(cacheName, 'string', {
-        moduleName: 'workbox-broadcast-update',
-        className: '~',
-        funcName: 'broadcastUpdate',
-        paramName: 'cacheName'
+      assert_mjs.assert.isType(cacheName, "string", {
+        moduleName: "workbox-broadcast-update",
+        className: "~",
+        funcName: "broadcastUpdate",
+        paramName: "cacheName",
       });
-      assert_mjs.assert.isType(url, 'string', {
-        moduleName: 'workbox-broadcast-update',
-        className: '~',
-        funcName: 'broadcastUpdate',
-        paramName: 'url'
+      assert_mjs.assert.isType(url, "string", {
+        moduleName: "workbox-broadcast-update",
+        className: "~",
+        funcName: "broadcastUpdate",
+        paramName: "url",
       });
     }
 
@@ -139,15 +162,15 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
       meta: CACHE_UPDATED_MESSAGE_META,
       payload: {
         cacheName: cacheName,
-        updatedURL: url
-      }
+        updatedURL: url,
+      },
     };
 
     if (channel) {
       channel.postMessage(data);
     } else {
       const windows = await clients.matchAll({
-        type: 'window'
+        type: "window",
       });
 
       for (const win of windows) {
@@ -192,27 +215,24 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
      *     to wait for a ready message from the window on navigation requests
      *     before sending the update.
      */
-    constructor({
-      headersToCheck,
-      channelName,
-      deferNoticationTimeout
-    } = {}) {
+    constructor({ headersToCheck, channelName, deferNoticationTimeout } = {}) {
       this._headersToCheck = headersToCheck || DEFAULT_HEADERS_TO_CHECK;
       this._channelName = channelName || DEFAULT_BROADCAST_CHANNEL_NAME;
-      this._deferNoticationTimeout = deferNoticationTimeout || DEFAULT_DEFER_NOTIFICATION_TIMEOUT;
+      this._deferNoticationTimeout =
+        deferNoticationTimeout || DEFAULT_DEFER_NOTIFICATION_TIMEOUT;
 
       {
-        assert_mjs.assert.isType(this._channelName, 'string', {
-          moduleName: 'workbox-broadcast-update',
-          className: 'BroadcastCacheUpdate',
-          funcName: 'constructor',
-          paramName: 'channelName'
+        assert_mjs.assert.isType(this._channelName, "string", {
+          moduleName: "workbox-broadcast-update",
+          className: "BroadcastCacheUpdate",
+          funcName: "constructor",
+          paramName: "channelName",
         });
         assert_mjs.assert.isArray(this._headersToCheck, {
-          moduleName: 'workbox-broadcast-update',
-          className: 'BroadcastCacheUpdate',
-          funcName: 'constructor',
-          paramName: 'headersToCheck'
+          moduleName: "workbox-broadcast-update",
+          className: "BroadcastCacheUpdate",
+          funcName: "constructor",
+          paramName: "headersToCheck",
         });
       }
 
@@ -237,14 +257,7 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
      * @return {Promise} Resolves once the update is sent.
      */
 
-
-    notifyIfUpdated({
-      oldResponse,
-      newResponse,
-      url,
-      cacheName,
-      event
-    }) {
+    notifyIfUpdated({ oldResponse, newResponse, url, cacheName, event }) {
       if (!responsesAreSame(oldResponse, newResponse, this._headersToCheck)) {
         {
           logger_mjs.logger.log(`Newer response found (and cached) for:`, url);
@@ -254,9 +267,13 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
           // In the case of a navigation request, the requesting page will likely
           // not have loaded its JavaScript in time to recevied the update
           // notification, so we defer it until ready (or we timeout waiting).
-          if (event && event.request && event.request.mode === 'navigate') {
+          if (event && event.request && event.request.mode === "navigate") {
             {
-              logger_mjs.logger.debug(`Original request was a navigation request, ` + `waiting for a ready message from the window`, event.request);
+              logger_mjs.logger.debug(
+                `Original request was a navigation request, ` +
+                  `waiting for a ready message from the window`,
+                event.request
+              );
             }
 
             await this._windowReadyOrTimeout(event);
@@ -265,10 +282,9 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
           await this._broadcastUpdate({
             channel: this._getChannel(),
             cacheName,
-            url
+            url,
           });
         }; // Send the update and ensure the SW stays alive until it's sent.
-
 
         const done = sendUpdate();
 
@@ -277,7 +293,11 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
             event.waitUntil(done);
           } catch (error) {
             {
-              logger_mjs.logger.warn(`Unable to ensure service worker stays alive ` + `when broadcasting cache update for ` + `${getFriendlyURL_mjs.getFriendlyURL(event.request.url)}'.`);
+              logger_mjs.logger.warn(
+                `Unable to ensure service worker stays alive ` +
+                  `when broadcasting cache update for ` +
+                  `${getFriendlyURL_mjs.getFriendlyURL(event.request.url)}'.`
+              );
             }
           }
         }
@@ -293,7 +313,6 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
      * @private
      */
 
-
     async _broadcastUpdate(opts) {
       await broadcastUpdate(opts);
     }
@@ -305,9 +324,8 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
      * @private
      */
 
-
     _getChannel() {
-      if ('BroadcastChannel' in self && !this._channel) {
+      if ("BroadcastChannel" in self && !this._channel) {
         this._channel = new BroadcastChannel(this._channelName);
       }
 
@@ -323,7 +341,6 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
      * @private
      */
 
-
     _windowReadyOrTimeout(event) {
       if (!this._navigationEventsDeferreds.has(event)) {
         const deferred = new Deferred_mjs.Deferred(); // Set the deferred on the `_navigationEventsDeferreds` map so it will
@@ -331,10 +348,12 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
 
         this._navigationEventsDeferreds.set(event, deferred); // But don't wait too long for the message since it may never come.
 
-
         const timeout = setTimeout(() => {
           {
-            logger_mjs.logger.debug(`Timed out after ${this._deferNoticationTimeout}` + `ms waiting for message from window`);
+            logger_mjs.logger.debug(
+              `Timed out after ${this._deferNoticationTimeout}` +
+                `ms waiting for message from window`
+            );
           }
 
           deferred.resolve();
@@ -358,19 +377,21 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
      * @private
      */
 
-
     _initWindowReadyDeferreds() {
       // A mapping between navigation events and their deferreds.
       this._navigationEventsDeferreds = new Map(); // The message listener needs to be added in the initial run of the
       // service worker, but since we don't actually need to be listening for
       // messages until the cache updates, we only invoke the callback if set.
 
-      self.addEventListener('message', event => {
-        if (event.data.type === 'WINDOW_READY' && event.data.meta === 'workbox-window' && this._navigationEventsDeferreds.size > 0) {
+      self.addEventListener("message", (event) => {
+        if (
+          event.data.type === "WINDOW_READY" &&
+          event.data.meta === "workbox-window" &&
+          this._navigationEventsDeferreds.size > 0
+        ) {
           {
             logger_mjs.logger.debug(`Received WINDOW_READY event: `, event);
           } // Resolve any pending deferreds.
-
 
           for (const deferred of this._navigationEventsDeferreds.values()) {
             deferred.resolve();
@@ -380,7 +401,6 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
         }
       });
     }
-
   }
 
   /*
@@ -432,32 +452,25 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
      * @param {Request} [options.event] The event that triggered the update.
      */
 
-
-    cacheDidUpdate({
-      cacheName,
-      oldResponse,
-      newResponse,
-      request,
-      event
-    }) {
+    cacheDidUpdate({ cacheName, oldResponse, newResponse, request, event }) {
       {
-        assert_mjs.assert.isType(cacheName, 'string', {
-          moduleName: 'workbox-broadcast-update',
-          className: 'Plugin',
-          funcName: 'cacheDidUpdate',
-          paramName: 'cacheName'
+        assert_mjs.assert.isType(cacheName, "string", {
+          moduleName: "workbox-broadcast-update",
+          className: "Plugin",
+          funcName: "cacheDidUpdate",
+          paramName: "cacheName",
         });
         assert_mjs.assert.isInstance(newResponse, Response, {
-          moduleName: 'workbox-broadcast-update',
-          className: 'Plugin',
-          funcName: 'cacheDidUpdate',
-          paramName: 'newResponse'
+          moduleName: "workbox-broadcast-update",
+          className: "Plugin",
+          funcName: "cacheDidUpdate",
+          paramName: "newResponse",
         });
         assert_mjs.assert.isInstance(request, Request, {
-          moduleName: 'workbox-broadcast-update',
-          className: 'Plugin',
-          funcName: 'cacheDidUpdate',
-          paramName: 'request'
+          moduleName: "workbox-broadcast-update",
+          className: "Plugin",
+          funcName: "cacheDidUpdate",
+          paramName: "request",
         });
       }
 
@@ -471,10 +484,9 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
         oldResponse,
         newResponse,
         event,
-        url: request.url
+        url: request.url,
       });
     }
-
   }
 
   /*
@@ -491,6 +503,12 @@ this.workbox.broadcastUpdate = (function (exports, assert_mjs, getFriendlyURL_mj
   exports.responsesAreSame = responsesAreSame;
 
   return exports;
-
-}({}, workbox.core._private, workbox.core._private, workbox.core._private, workbox.core._private, workbox.core._private));
+})(
+  {},
+  workbox.core._private,
+  workbox.core._private,
+  workbox.core._private,
+  workbox.core._private,
+  workbox.core._private
+);
 //# sourceMappingURL=workbox-broadcast-update.dev.js.map

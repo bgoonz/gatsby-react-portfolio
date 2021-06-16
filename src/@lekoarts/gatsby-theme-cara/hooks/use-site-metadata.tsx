@@ -1,20 +1,20 @@
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby";
 
 type UseSiteMetadataProps = {
   site: {
     siteMetadata: {
-      siteTitle: string
-      siteTitleAlt: string
-      siteHeadline: string
-      siteUrl: string
-      siteDescription: string
-      siteLanguage: string
-      siteImage: string
-      author: string
-      [key: string]: unknown
-    }
-  }
-}
+      siteTitle: string;
+      siteTitleAlt: string;
+      siteHeadline: string;
+      siteUrl: string;
+      siteDescription: string;
+      siteLanguage: string;
+      siteImage: string;
+      author: string;
+      [key: string]: unknown;
+    };
+  };
+};
 
 const useSiteMetadata = () => {
   const data = useStaticQuery<UseSiteMetadataProps>(graphql`
@@ -30,9 +30,9 @@ const useSiteMetadata = () => {
         }
       }
     }
-  `)
+  `);
 
-  return data.site.siteMetadata
-}
+  return data.site.siteMetadata;
+};
 
-export default useSiteMetadata
+export default useSiteMetadata;

@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import React from "react"
-import { Global } from "@emotion/core"
-import { jsx } from "theme-ui"
-import SEO from "./seo"
+import React from "react";
+import { Global } from "@emotion/core";
+import { jsx } from "theme-ui";
+import SEO from "./seo";
 
-type LayoutProps = { children: React.ReactNode; className?: string }
+type LayoutProps = { children: React.ReactNode; className?: string };
 
 const Layout = ({ children, className = `` }: LayoutProps) => (
   <React.Fragment>
@@ -42,6 +42,6 @@ const Layout = ({ children, className = `` }: LayoutProps) => (
     <SEO />
     <main className={className}>{children}</main>
   </React.Fragment>
-)
+);
 
-export default Layout
+export default Layout;

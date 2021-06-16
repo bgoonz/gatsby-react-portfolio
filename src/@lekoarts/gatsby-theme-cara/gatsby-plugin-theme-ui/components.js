@@ -1,5 +1,5 @@
-import React from "react"
-import ProjectCard from "../components/project-card"
+import React from "react";
+import ProjectCard from "../components/project-card";
 
 const components = {
   // eslint-disable-next-line react/display-name
@@ -8,6 +8,6 @@ const components = {
       {children}
     </ProjectCard>
   ),
-}
+};
 
-export default components
+export default components;
