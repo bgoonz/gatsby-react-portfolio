@@ -16,7 +16,7 @@ Preview html files by pasting their url into the search bar
 
 ### [Data Structures Interactive Learning Hub](https://ds-algo-official-c3dw6uapg-bgoonz.vercel.app/)
 
-**Big O notation is the language we use for talking about how long an algorithm takes to run. It's how we compare the efficiency of 
+**Big O notation is the language we use for talking about how long an algorithm takes to run. It's how we compare the efficiency of
 different approaches to a problem.**
 
 ![lorem-ipsum](https://bgoonz-blog.netlify.app/images/best-birch.gif)
@@ -29,18 +29,16 @@ different approaches to a problem.**
 
 ### [Potluck Planner](https://potluck-landing.netlify.app/)
 
-Potluck Planner
----------------
+## Potluck Planner
 
-If you have ever tried to organize a potluck through text messages, online to-do lists or spreadsheets, you'll understand why this app is 
+If you have ever tried to organize a potluck through text messages, online to-do lists or spreadsheets, you'll understand why this app is
 essential.In the world of social gatherings and potlucks the "Potluck Planner" is king. This is your place for all things pot luck.
 
 ![video chat](https://bgoonz-blog.netlify.app/images/energetic-sunflower.png)
 
 ### [Zumzi Video Conferencing](https://github.com/bgoonz/zumzi-chat-messenger)
 
-**Features: Live Streaming, Screen Sharing, Fine control over all video & audio parameters and user permissions, Supports video streaming at 
+**Features: Live Streaming, Screen Sharing, Fine control over all video & audio parameters and user permissions, Supports video streaming at
 various resolutions: Standard, HD, FHD and 4K, Group Chat, One-to-One chat, Invite Participants**
-
 
 [Source](https://bgoonz-blog.netlify.app/showcase)
