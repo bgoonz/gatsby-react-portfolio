@@ -14,12 +14,6 @@
  * optimizations.  Most users will not need to touch this file.
  */
 
-/* prevents conflicts */
-#if defined(__MINGW32__)
-#include <shlwapi.h> /* typedefs INT16 and INT32 */
- 
-#define HAVE_BOOLEAN
-#endif
 
 /*
  * Maximum number of components (color channels) allowed in JPEG image.
@@ -120,7 +114,6 @@ typedef char JOCTET;
 #endif /* HAVE_UNSIGNED_CHAR */
 
 
-#ifndef _BASETSD_H_		/* basestd.h from mingw-w64 defines UINT8, UINT16, INT16, INT32 */
 /* These typedefs are used for various table entries and so forth.
  * They must be at least as wide as specified; but making them too big
  * won't cost a huge amount of memory, so we don't provide special
@@ -180,8 +173,11 @@ typedef short INT16;
  */
 
 #ifndef XMD_H                   /* X11/xmd.h correctly defines INT32 */
+#ifndef _BASETSD_H_             /* Microsoft defines it in basetsd.h */
+#ifndef _BASETSD_H              /* MinGW is slightly different */
 #ifndef QGLOBAL_H               /* Qt defines it in qglobal.h */
 typedef long INT32;
+#endif
 #endif
 #endif
 #endif
