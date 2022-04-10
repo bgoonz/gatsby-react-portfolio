@@ -6,5 +6,5 @@ models:
   section:
     type: page
     label: Section
-    match: '*'
+    match: "*"
     fields: []
